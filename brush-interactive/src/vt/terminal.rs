@@ -82,7 +82,7 @@ impl Terminal for StdTerminal {
     }
 
     fn columns(&self) -> Option<usize> {
-        std::env::var("COLUMNS").ok()?.parse().ok()
+        brush_core::sys::terminal::get_columns(&std::io::stdin().into())
     }
 
     fn wait_for_input(&mut self, timeout: Duration) -> std::io::Result<bool> {
